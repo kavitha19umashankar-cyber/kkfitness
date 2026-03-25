@@ -3,232 +3,2217 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KK Fitness — Coming Soon</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500&display=swap');
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <!-- SEO -->
+  <title>KK Fitness Studio | Gym in Chennai — Anna Nagar, Velachery, Porur, Ambattur</title>
+  <meta name="description" content="KK Fitness Studio offers premium gym facilities across 4 Chennai locations. Expert trainers, HIIT, weight training, Zumba and more. Join today!" />
+  <meta name="keywords" content="gym in Chennai, fitness studio Chennai, KK Fitness, Anna Nagar gym, Velachery gym, Porur gym, Ambattur gym" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="KK Fitness Studio | Feel The Sweat" />
+  <meta property="og:description" content="Chennai's most energetic fitness community. 4 locations. Real results." />
+  <meta property="og:image" content="./kk.png" />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS CUSTOM PROPERTIES
+    ============================================================ */
+    :root {
+      --bg:        #0D0D0D;
+      --bg2:       #141414;
+      --card:      #1A1A1A;
+      --border:    #2A2A2A;
+      --gold:      #E8C532;
+      --gold-h:    #F5D657;
+      --gold-dim:  rgba(232, 197, 50, 0.12);
+      --text:      #FFFFFF;
+      --muted:     #AAAAAA;
+      --wa:        #25D366;
+      --wa-h:      #1fad54;
+
+      --font-head: 'Barlow Condensed', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+      --font-stat: 'Bebas Neue', sans-serif;
+
+      --nav-h:     72px;
+      --radius:    6px;
+      --max-w:     1200px;
+      --section-p: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Barlow', sans-serif;
-      background-color: #09090B;
-      color: #FAFAFA;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
     }
 
-    /* Background grid texture */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: 0;
+    img {
+      display: block;
+      max-width: 100%;
     }
 
-    /* Green radial glow */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px;
-      height: 700px;
-      background: radial-gradient(circle, rgba(57, 255, 20, 0.08) 0%, transparent 70%);
-      z-index: 0;
-      pointer-events: none;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .container {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 2rem;
-      max-width: 640px;
+    ul {
+      list-style: none;
     }
 
-    /* Logo */
-    .logo {
-      width: 80px;
-      height: 80px;
-      background: #18181B;
-      border: 2px solid #39FF14;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 2rem;
-      box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+    button {
+      cursor: pointer;
+      font-family: var(--font-body);
+      border: none;
+      background: none;
     }
 
-    .logo span {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: 1.8rem;
-      color: #39FF14;
-      letter-spacing: -1px;
-    }
-
-    /* Tag */
-    .tag {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      color: #39FF14;
+    /* ============================================================
+       TYPOGRAPHY UTILITIES
+    ============================================================ */
+    .section-label {
+      font-family: var(--font-stat);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
       text-transform: uppercase;
-      border: 1px solid rgba(57, 255, 20, 0.3);
-      background: rgba(57, 255, 20, 0.05);
-      padding: 0.35rem 1rem;
-      border-radius: 2px;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-heading {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    .section-heading span {
+      color: var(--gold);
+    }
+
+    .section-body {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ============================================================
+       LAYOUT UTILITIES
+    ============================================================ */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 4vw, 3rem);
+    }
+
+    .section {
+      padding: var(--section-p);
+    }
+
+    /* ============================================================
+       BUTTON UTILITIES
+    ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-wa {
+      background: var(--wa);
+      color: #fff;
+    }
+
+    .btn-wa:hover {
+      background: var(--wa-h);
+      box-shadow: 0 6px 24px rgba(37, 211, 102, 0.35);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-h);
+      box-shadow: 0 6px 24px rgba(232, 197, 50, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 2px solid var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: var(--gold-dim);
+    }
+
+    /* ============================================================
+       DIVIDER ACCENT
+    ============================================================ */
+    .gold-bar {
+      width: 48px;
+      height: 3px;
+      background: var(--gold);
       margin-bottom: 1.5rem;
     }
 
-    /* Heading */
-    h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 900;
-      font-size: clamp(3rem, 8vw, 5.5rem);
-      line-height: 1;
+    /* ============================================================
+       FOCUS STYLES (Accessibility)
+    ============================================================ */
+    :focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* ============================================================
+       SCROLLBAR
+    ============================================================ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    #navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      width: 100%;
+      background: transparent;
+      transition: background 0.3s, border-bottom 0.3s;
+    }
+
+    #navbar.scrolled {
+      background: rgba(13, 13, 13, 0.97);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      height: var(--nav-h);
+      gap: 2rem;
+    }
+
+    .nav-logo img {
+      height: 44px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      margin-left: auto;
+    }
+
+    .nav-links a {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.25rem;
+      color: var(--muted);
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius);
+      transition: color 0.2s, background 0.2s;
     }
 
-    h1 span {
-      color: #39FF14;
-      text-shadow: 0 0 40px rgba(57, 255, 20, 0.4);
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
     }
 
-    /* Subtext */
-    p {
-      font-size: 1rem;
-      color: #A1A1AA;
-      line-height: 1.7;
-      max-width: 420px;
-      margin-bottom: 2.5rem;
+    .nav-wa {
+      margin-left: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      font-size: 0.85rem;
+      white-space: nowrap;
     }
 
-    /* Divider */
-    .divider {
-      width: 60px;
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      padding: 4px;
+      margin-left: auto;
+      border-radius: var(--radius);
+      transition: background 0.2s;
+    }
+
+    .nav-toggle:hover { background: rgba(255,255,255,0.08); }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
       height: 2px;
-      background: #39FF14;
-      margin: 0 auto 2.5rem;
-      box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
     }
 
-    /* Contact */
-    .contact {
+    #navbar.nav--open .nav-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    #navbar.nav--open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+    }
+    #navbar.nav--open .nav-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+    }
+
+    .nav-drawer ul {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
-      align-items: center;
+      gap: 0.25rem;
     }
 
-    .contact a {
-      color: #A1A1AA;
-      text-decoration: none;
-      font-size: 0.9rem;
+    .drawer-link {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.65rem 0.5rem;
+      border-bottom: 1px solid var(--border);
       transition: color 0.2s;
+    }
+
+    .drawer-link:hover { color: var(--gold); }
+
+    .drawer-wa {
+      margin-top: 1rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    #navbar.nav--open .nav-drawer {
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links, .nav-wa { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: calc(100vh - var(--nav-h));
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%);
+      padding-bottom: 5rem;
     }
 
-    .contact a:hover { color: #39FF14; }
-
-    .contact-dot {
-      width: 6px;
-      height: 6px;
-      background: #39FF14;
-      border-radius: 50%;
-      display: inline-block;
-      box-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
-    }
-
-    /* Border frame */
-    .frame {
-      position: fixed;
-      inset: 16px;
-      border: 1px solid rgba(57, 255, 20, 0.12);
-      border-radius: 4px;
-      pointer-events: none;
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80&fit=crop&auto=format');
+      background-size: cover;
+      background-position: center;
       z-index: 0;
     }
 
-    /* Corner accents */
-    .corner {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      border-color: #39FF14;
-      border-style: solid;
+    /* Subtle grain texture */
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 200px 200px;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(13, 13, 13, 0.92) 0%,
+        rgba(13, 13, 13, 0.75) 55%,
+        rgba(13, 13, 13, 0.45) 100%
+      );
       z-index: 2;
     }
-    .corner.tl { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
-    .corner.tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
-    .corner.bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
-    .corner.br { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
+
+    /* Gold diagonal accent bar */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      z-index: 3;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      padding-top: clamp(3rem, 6vw, 5rem);
+      padding-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-stat);
+      font-size: 0.85rem;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-heading {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-heading span {
+      color: var(--gold);
+      text-shadow: 0 0 60px rgba(232, 197, 50, 0.3);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(255,255,255,0.7);
+      line-height: 1.65;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Stats bar */
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      max-width: 520px;
+      backdrop-filter: blur(6px);
+    }
+
+    .stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0.5rem;
+      gap: 0.2rem;
+    }
+
+    .stat-num {
+      font-family: var(--font-stat);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--font-stat);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.1);
+      flex-shrink: 0;
+    }
 
     @media (max-width: 480px) {
-      .frame, .corner { display: none; }
+      #hero { clip-path: none; }
+      .hero-stats { max-width: 100%; }
+      .stat-item { padding: 0.75rem 0.25rem; }
     }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      background: var(--bg2);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+
+    .about-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin: 1.75rem 0 2rem;
+    }
+
+    .about-body p {
+      color: var(--muted);
+      font-size: 0.97rem;
+      line-height: 1.75;
+    }
+
+    .about-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .feature-tile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .feature-tile:hover {
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .feature-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--gold-dim);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+    }
+
+    /* About image */
+    .about-visual {
+      position: relative;
+    }
+
+    .about-img-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transform: perspective(800px) rotateY(-4deg);
+      box-shadow: 24px 24px 60px rgba(0,0,0,0.6);
+      transition: transform 0.4s;
+    }
+
+    .about-img-wrap:hover {
+      transform: perspective(800px) rotateY(0deg);
+    }
+
+    .about-img-wrap img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .about-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.5) 0%, transparent 50%);
+    }
+
+    .about-img-badge {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 2;
+      background: var(--gold);
+      color: #0D0D0D;
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-num {
+      font-family: var(--font-stat);
+      font-size: 2.2rem;
+      line-height: 1;
+    }
+
+    .badge-txt {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { order: -1; }
+      .about-img-wrap { transform: none; }
+      .about-img-wrap img { height: 300px; }
+    }
+
+    @media (max-width: 480px) {
+      .about-features { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       PROGRAMS
+    ============================================================ */
+    #programs {
+      background: var(--bg);
+    }
+
+    .programs-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .programs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .program-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: default;
+    }
+
+    .program-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      border-color: var(--gold);
+    }
+
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+      z-index: 2;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .program-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .program-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .program-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .program-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.97) 0%, rgba(13,13,13,0.5) 55%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+    }
+
+    .program-overlay h3 {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .program-overlay p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.85rem;
+    }
+
+    .program-link {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: color 0.2s;
+    }
+
+    .program-link:hover { color: var(--gold-h); }
+
+    @media (max-width: 860px) {
+      .programs-header { flex-direction: column; align-items: flex-start; }
+      .programs-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 520px) {
+      .programs-grid { grid-template-columns: 1fr; }
+      .program-card img { height: 200px; }
+    }
+
+    /* ============================================================
+       LOCATIONS
+    ============================================================ */
+    #locations {
+      background: var(--bg2);
+    }
+
+    .locations-header {
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .locations-header .section-body {
+      margin-top: 1.25rem;
+    }
+
+    .locations-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .location-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .location-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .location-card:hover {
+      border-color: rgba(232, 197, 50, 0.4);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .location-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .loc-number {
+      font-family: var(--font-stat);
+      font-size: 3.5rem;
+      color: var(--gold-dim);
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      color: rgba(232, 197, 50, 0.1);
+    }
+
+    .loc-name {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--gold);
+    }
+
+    .loc-address {
+      font-style: normal;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+
+    .loc-address svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--gold);
+    }
+
+    .loc-hours {
+      display: flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .loc-hours svg {
+      flex-shrink: 0;
+      margin-top: 3px;
+      color: var(--gold);
+    }
+
+    .loc-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .loc-btn {
+      flex: 1;
+      justify-content: center;
+      font-size: 0.82rem;
+      padding: 0.65rem 0.75rem;
+      min-width: 110px;
+    }
+
+    @media (max-width: 768px) {
+      .locations-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+    ============================================================ */
+    #testimonials {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testi-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1600&q=80&fit=crop&auto=format');
+      background-size: cover;
+      background-position: center top;
+      z-index: 0;
+    }
+
+    .testi-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 13, 13, 0.88);
+      z-index: 1;
+    }
+
+    .testi-inner {
+      position: relative;
+      z-index: 2;
+    }
+
+    .testi-header {
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .testi-card {
+      background: rgba(26, 26, 26, 0.85);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      backdrop-filter: blur(6px);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .testi-card:hover {
+      border-color: rgba(232, 197, 50, 0.4);
+      transform: translateY(-4px);
+    }
+
+    .testi-stars {
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 2px;
+    }
+
+    .testi-quote {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.75;
+      flex: 1;
+      font-style: italic;
+    }
+
+    .testi-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .testi-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #0D0D0D;
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .testi-name {
+      display: block;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+      font-style: normal;
+    }
+
+    .testi-branch {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    .testi-badge {
+      margin-left: auto;
+      background: var(--gold-dim);
+      border: 1px solid rgba(232, 197, 50, 0.25);
+      color: var(--gold);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.65rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 860px) {
+      .testi-grid { grid-template-columns: 1fr; }
+      .testi-badge { margin-left: 0; }
+    }
+
+    /* ============================================================
+       WHATSAPP OPT-IN
+    ============================================================ */
+    #whatsapp-cta {
+      background: var(--gold);
+      color: #0D0D0D;
+    }
+
+    .wa-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .wa-label {
+      font-family: var(--font-stat);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      color: rgba(13,13,13,0.55);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .wa-heading {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      color: #0D0D0D;
+      margin-bottom: 1.25rem;
+    }
+
+    .wa-heading span {
+      color: #fff;
+    }
+
+    .wa-body {
+      font-size: 1rem;
+      color: rgba(13,13,13,0.75);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .btn-dark {
+      background: #0D0D0D;
+      color: #fff;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .btn-dark:hover {
+      background: #1a1a1a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+    }
+
+    .wa-main-btn {
+      margin-bottom: 1.25rem;
+    }
+
+    .wa-consent-note {
+      font-size: 0.8rem;
+      color: rgba(13,13,13,0.6);
+      line-height: 1.55;
+      max-width: 420px;
+    }
+
+    /* Form */
+    .wa-form-wrap {
+      background: #0D0D0D;
+      border-radius: var(--radius);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      color: var(--text);
+    }
+
+    .form-title {
+      font-family: var(--font-head);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      padding: 0.7rem 0.9rem;
+      width: 100%;
+      transition: border-color 0.2s;
+      appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(170,170,170,0.5);
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.9rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--card);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .phone-wrap {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .phone-wrap:focus-within {
+      border-color: var(--gold);
+    }
+
+    .phone-prefix {
+      background: var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0 0.85rem;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .phone-wrap input {
+      border: none;
+      border-radius: 0;
+      flex: 1;
+    }
+
+    .phone-wrap input:focus {
+      border-color: transparent;
+    }
+
+    /* Checkbox */
+    .form-check-group { margin-bottom: 1.25rem; }
+
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.5;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--gold);
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .consent-error {
+      font-size: 0.8rem;
+      color: #f87171;
+      margin-top: 0.35rem;
+      min-height: 1rem;
+    }
+
+    .form-submit {
+      width: 100%;
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 860px) {
+      .wa-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       LEGAL (Privacy + Terms)
+    ============================================================ */
+    #legal {
+      background: var(--bg2);
+    }
+
+    .legal-header {
+      margin-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .legal-wrap {
+      max-width: 860px;
+    }
+
+    /* Accordion */
+    .accordion {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 1rem;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .accordion[open] {
+      border-color: rgba(232, 197, 50, 0.35);
+    }
+
+    .accordion-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      list-style: none;
+      background: var(--card);
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-style: italic;
+      font-size: 1.1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text);
+      transition: background 0.2s, color 0.2s;
+      user-select: none;
+    }
+
+    .accordion-trigger::-webkit-details-marker { display: none; }
+
+    .accordion-trigger:hover {
+      background: rgba(232, 197, 50, 0.06);
+      color: var(--gold);
+    }
+
+    .accordion[open] .accordion-trigger {
+      color: var(--gold);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .accordion-icon {
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      color: var(--gold);
+    }
+
+    .accordion[open] .accordion-icon {
+      transform: rotate(180deg);
+    }
+
+    .accordion-body {
+      padding: 1.75rem 1.5rem;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .accordion-body p,
+    .accordion-body li {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .accordion-body h4 {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+
+    .accordion-body a {
+      color: var(--gold);
+      text-decoration: underline;
+    }
+
+    .legal-updated {
+      font-size: 0.78rem !important;
+      color: rgba(170,170,170,0.5) !important;
+      margin-bottom: 0.25rem;
+    }
+
+    .terms-list {
+      list-style: decimal;
+      padding-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #footer {
+      background: #090909;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      padding-top: clamp(3rem, 6vw, 5rem);
+      padding-bottom: clamp(2rem, 4vw, 3rem);
+    }
+
+    .footer-tagline {
+      font-family: var(--font-stat);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin: 0.85rem 0 0.75rem;
+    }
+
+    .footer-desc {
+      font-size: 0.88rem;
+      color: rgba(170,170,170,0.6);
+      line-height: 1.65;
+      max-width: 320px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 0.65rem;
+    }
+
+    .social-link {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .social-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+      background: var(--gold-dim);
+    }
+
+    .footer-col-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links-col a {
+      font-size: 0.9rem;
+      color: rgba(170,170,170,0.7);
+      transition: color 0.2s;
+    }
+
+    .footer-links-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-bottom-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.25rem;
+      padding-bottom: 1.25rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: rgba(170,170,170,0.4);
+    }
+
+    .footer-gst {
+      font-size: 0.72rem !important;
+      color: rgba(170,170,170,0.25) !important;
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+    }
+
   </style>
 </head>
 <body>
 
-  <div class="frame"></div>
-  <div class="corner tl"></div>
-  <div class="corner tr"></div>
-  <div class="corner bl"></div>
-  <div class="corner br"></div>
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="nav-inner container">
 
-  <div class="container">
+      <a href="#" class="nav-logo" aria-label="KK Fitness Studio Home">
+        <img src="./kk.png" alt="KK Fitness Studio Logo" height="44" />
+      </a>
 
-    <div class="logo">
-      <span>KK</span>
+      <ul class="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#testimonials">Members</a></li>
+        <li><a href="#whatsapp-cta">Contact</a></li>
+      </ul>
+
+      <a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20know%20more%20about%20KK%20Fitness%20Studio"
+         class="btn btn-wa nav-wa"
+         target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Chat on WhatsApp
+      </a>
+
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
     </div>
 
-    <div class="tag">Coming Soon</div>
+    <!-- Mobile drawer -->
+    <div class="nav-drawer" id="nav-drawer">
+      <ul role="list">
+        <li><a href="#about" class="drawer-link">About</a></li>
+        <li><a href="#programs" class="drawer-link">Programs</a></li>
+        <li><a href="#locations" class="drawer-link">Locations</a></li>
+        <li><a href="#testimonials" class="drawer-link">Members</a></li>
+        <li><a href="#whatsapp-cta" class="drawer-link">Contact</a></li>
+        <li>
+          <a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20know%20more%20about%20KK%20Fitness%20Studio"
+             class="btn btn-wa drawer-wa"
+             target="_blank" rel="noopener">
+            Chat on WhatsApp
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-    <h1>We're Building<br><span>Something Great</span></h1>
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-noise" aria-hidden="true"></div>
+    <div class="hero-overlay" aria-hidden="true"></div>
 
-    <div class="divider"></div>
+    <div class="container hero-content">
+      <p class="hero-eyebrow">Chennai's Premier Fitness Community</p>
+      <h1 class="hero-heading">
+        Feel The<br />
+        <span>Sweat.</span><br />
+        Transform<br />
+        Your Life.
+      </h1>
+      <p class="hero-sub">
+        4 locations across Chennai. Real results. No excuses.<br />
+        Join thousands who've already made the change.
+      </p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/919999999999?text=Hi%2C%20I%20want%20to%20know%20more%20about%20KK%20Fitness%20Studio"
+           class="btn btn-wa"
+           target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp Us
+        </a>
+        <a href="#programs" class="btn btn-outline">Explore Programs</a>
+      </div>
 
-    <p>
-      KK Fitness is launching soon. Our new website is under construction.
-      Stay tuned — something powerful is on the way.
-    </p>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">500+</span>
+          <span class="stat-label">Members</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Locations</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">10+</span>
+          <span class="stat-label">Programs</span>
+        </div>
+        <div class="stat-divider" aria-hidden="true"></div>
+        <div class="stat-item">
+          <span class="stat-num">5 Yrs</span>
+          <span class="stat-label">Strong</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <div class="contact">
-      <a href="tel:+919999999999">
-        <span class="contact-dot"></span>
-        +91 99999 99999
-      </a>
-      <a href="mailto:info@kkfitness.in">
-        <span class="contact-dot"></span>
-        info@kkfitness.in
-      </a>
-      <a href="https://kkfitness.in">
-        <span class="contact-dot"></span>
-        kkfitness.in
-      </a>
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about" class="section">
+    <div class="container about-grid">
+
+      <div class="about-text">
+        <span class="section-label">About Us</span>
+        <div class="gold-bar"></div>
+        <h2 class="section-heading">
+          More Than<br />
+          A Gym. It's<br />
+          A <span>Movement.</span>
+        </h2>
+        <div class="about-body">
+          <p>
+            KK Fitness Studio was founded on one belief — that every person in Chennai deserves
+            access to world-class fitness. Since opening our first location, we have grown into
+            a community of over 500 dedicated members across 4 studios.
+          </p>
+          <p>
+            Our certified trainers design programs that push you beyond limits, whether you are
+            a beginner stepping into a gym for the first time or an athlete chasing peak performance.
+          </p>
+          <p>
+            Premium equipment. Science-backed programming. A culture that celebrates every rep,
+            every drop of sweat, and every transformation — big or small.
+          </p>
+        </div>
+
+        <div class="about-features">
+          <div class="feature-tile">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span>Expert Trainers</span>
+          </div>
+          <div class="feature-tile">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <span>High Intensity Programs</span>
+          </div>
+          <div class="feature-tile">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <span>Diet &amp; Nutrition</span>
+          </div>
+          <div class="feature-tile">
+            <div class="feature-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <span>Supportive Community</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual" aria-hidden="true">
+        <div class="about-img-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80&fit=crop&auto=format"
+            alt="KK Fitness trainer with member"
+            loading="lazy"
+          />
+          <div class="about-img-badge">
+            <span class="badge-num">500+</span>
+            <span class="badge-txt">Members<br />Transformed</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROGRAMS
+  ============================================================ -->
+  <section id="programs" class="section">
+    <div class="container">
+      <div class="programs-header">
+        <div>
+          <span class="section-label">What We Offer</span>
+          <div class="gold-bar"></div>
+          <h2 class="section-heading">Programs Built<br /><span>For Results</span></h2>
+        </div>
+        <p class="section-body">
+          Every program at KK Fitness is designed by certified professionals with one goal — your transformation.
+        </p>
+      </div>
+
+      <div class="programs-grid">
+
+        <article class="program-card">
+          <img
+            src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=600&q=80&fit=crop&auto=format"
+            alt="Weight Training at KK Fitness"
+            loading="lazy"
+          />
+          <div class="program-overlay">
+            <h3>Weight Training</h3>
+            <p>Build strength and muscle with structured lifting programs for all levels.</p>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Weight%20Training%20at%20KK%20Fitness"
+               target="_blank" rel="noopener" class="program-link">
+              Enquire on WhatsApp &rarr;
+            </a>
+          </div>
+        </article>
+
+        <article class="program-card">
+          <img
+            src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=600&q=80&fit=crop&auto=format"
+            alt="Cardio and HIIT at KK Fitness"
+            loading="lazy"
+          />
+          <div class="program-overlay">
+            <h3>Cardio &amp; HIIT</h3>
+            <p>Burn fat fast with high-intensity interval training that keeps your body guessing.</p>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Cardio%20%26%20HIIT%20at%20KK%20Fitness"
+               target="_blank" rel="noopener" class="program-link">
+              Enquire on WhatsApp &rarr;
+            </a>
+          </div>
+        </article>
+
+        <article class="program-card">
+          <img
+            src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=600&q=80&fit=crop&auto=format"
+            alt="Zumba and Dance Fitness at KK Fitness"
+            loading="lazy"
+          />
+          <div class="program-overlay">
+            <h3>Zumba &amp; Dance</h3>
+            <p>High-energy dance workouts that make fitness feel like a celebration.</p>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Zumba%20at%20KK%20Fitness"
+               target="_blank" rel="noopener" class="program-link">
+              Enquire on WhatsApp &rarr;
+            </a>
+          </div>
+        </article>
+
+        <article class="program-card">
+          <img
+            src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600&q=80&fit=crop&auto=format"
+            alt="CrossFit at KK Fitness"
+            loading="lazy"
+          />
+          <div class="program-overlay">
+            <h3>CrossFit</h3>
+            <p>Functional movements, constant variation, and community-driven intensity.</p>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20CrossFit%20at%20KK%20Fitness"
+               target="_blank" rel="noopener" class="program-link">
+              Enquire on WhatsApp &rarr;
+            </a>
+          </div>
+        </article>
+
+        <article class="program-card">
+          <img
+            src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80&fit=crop&auto=format"
+            alt="Personal Training at KK Fitness"
+            loading="lazy"
+          />
+          <div class="program-overlay">
+            <h3>Personal Training</h3>
+            <p>One-on-one sessions tailored entirely to your body, goals, and timeline.</p>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Personal%20Training%20at%20KK%20Fitness"
+               target="_blank" rel="noopener" class="program-link">
+              Enquire on WhatsApp &rarr;
+            </a>
+          </div>
+        </article>
+
+        <article class="program-card">
+          <img
+            src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80&fit=crop&auto=format"
+            alt="Yoga and Flexibility at KK Fitness"
+            loading="lazy"
+          />
+          <div class="program-overlay">
+            <h3>Yoga &amp; Flexibility</h3>
+            <p>Restore balance, improve mobility, and build a strong mind-muscle connection.</p>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20Yoga%20at%20KK%20Fitness"
+               target="_blank" rel="noopener" class="program-link">
+              Enquire on WhatsApp &rarr;
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       LOCATIONS
+  ============================================================ -->
+  <section id="locations" class="section">
+    <div class="container">
+      <div class="locations-header">
+        <span class="section-label">Our Studios</span>
+        <div class="gold-bar"></div>
+        <h2 class="section-heading">Find Your Nearest<br /><span>KK Studio</span></h2>
+        <p class="section-body">
+          Four locations across Chennai — all equipped with premium gear, certified trainers, and the same high-energy culture.
+        </p>
+      </div>
+
+      <div class="locations-grid">
+
+        <div class="location-card">
+          <div class="loc-number">01</div>
+          <h3 class="loc-name">Anna Nagar</h3>
+          <address class="loc-address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            No. XX, Jawaharlal Nehru Road,<br />Anna Nagar, Chennai &ndash; 600040
+          </address>
+          <div class="loc-hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon&ndash;Sat: 5:30 AM &ndash; 10:00 PM<br />Sun: 6:00 AM &ndash; 8:00 PM</span>
+          </div>
+          <div class="loc-actions">
+            <a href="https://maps.google.com/?q=Anna+Nagar+Chennai" target="_blank" rel="noopener" class="btn btn-outline loc-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Directions
+            </a>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20KK%20Fitness%20Anna%20Nagar" target="_blank" rel="noopener" class="btn btn-wa loc-btn">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="loc-number">02</div>
+          <h3 class="loc-name">Velachery</h3>
+          <address class="loc-address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            No. XX, 100 Feet Road,<br />Velachery, Chennai &ndash; 600042
+          </address>
+          <div class="loc-hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon&ndash;Sat: 5:30 AM &ndash; 10:00 PM<br />Sun: 6:00 AM &ndash; 8:00 PM</span>
+          </div>
+          <div class="loc-actions">
+            <a href="https://maps.google.com/?q=Velachery+Chennai" target="_blank" rel="noopener" class="btn btn-outline loc-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Directions
+            </a>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20KK%20Fitness%20Velachery" target="_blank" rel="noopener" class="btn btn-wa loc-btn">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="loc-number">03</div>
+          <h3 class="loc-name">Porur</h3>
+          <address class="loc-address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            No. XX, Arcot Road,<br />Porur, Chennai &ndash; 600116
+          </address>
+          <div class="loc-hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon&ndash;Sat: 5:30 AM &ndash; 10:00 PM<br />Sun: 6:00 AM &ndash; 8:00 PM</span>
+          </div>
+          <div class="loc-actions">
+            <a href="https://maps.google.com/?q=Porur+Chennai" target="_blank" rel="noopener" class="btn btn-outline loc-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Directions
+            </a>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20KK%20Fitness%20Porur" target="_blank" rel="noopener" class="btn btn-wa loc-btn">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="location-card">
+          <div class="loc-number">04</div>
+          <h3 class="loc-name">Ambattur</h3>
+          <address class="loc-address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            No. XX, Ambattur Industrial Estate,<br />Ambattur, Chennai &ndash; 600058
+          </address>
+          <div class="loc-hours">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Mon&ndash;Sat: 5:30 AM &ndash; 10:00 PM<br />Sun: 6:00 AM &ndash; 8:00 PM</span>
+          </div>
+          <div class="loc-actions">
+            <a href="https://maps.google.com/?q=Ambattur+Chennai" target="_blank" rel="noopener" class="btn btn-outline loc-btn">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Directions
+            </a>
+            <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20KK%20Fitness%20Ambattur" target="_blank" rel="noopener" class="btn btn-wa loc-btn">
+              WhatsApp
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TESTIMONIALS
+  ============================================================ -->
+  <section id="testimonials">
+    <div class="testi-bg" aria-hidden="true"></div>
+    <div class="testi-overlay" aria-hidden="true"></div>
+
+    <div class="container testi-inner section">
+      <div class="testi-header">
+        <span class="section-label">Member Stories</span>
+        <div class="gold-bar"></div>
+        <h2 class="section-heading">Real People.<br /><span>Real Results.</span></h2>
+      </div>
+
+      <div class="testi-grid">
+
+        <blockquote class="testi-card">
+          <div class="testi-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-quote">
+            "Joining KK Fitness was the best decision of my life. I lost 15kg in just 4 months with the guidance of incredible trainers. The community here is unlike anything else."
+          </p>
+          <footer class="testi-footer">
+            <div class="testi-avatar" aria-hidden="true">PS</div>
+            <div>
+              <cite class="testi-name">Priya S.</cite>
+              <span class="testi-branch">Anna Nagar Member</span>
+            </div>
+            <span class="testi-badge">Lost 15kg in 4 months</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testi-card">
+          <div class="testi-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-quote">
+            "The trainers here are incredibly motivating. The HIIT sessions are intense but totally worth it. My stamina has completely transformed in just 3 months."
+          </p>
+          <footer class="testi-footer">
+            <div class="testi-avatar" aria-hidden="true">KR</div>
+            <div>
+              <cite class="testi-name">Karthik R.</cite>
+              <span class="testi-branch">Velachery Member</span>
+            </div>
+            <span class="testi-badge">+40% Stamina Gain</span>
+          </footer>
+        </blockquote>
+
+        <blockquote class="testi-card">
+          <div class="testi-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testi-quote">
+            "Finally a gym that feels like home. The community here keeps me coming back every single day. KK Fitness changed my relationship with fitness forever."
+          </p>
+          <footer class="testi-footer">
+            <div class="testi-avatar" aria-hidden="true">MT</div>
+            <div>
+              <cite class="testi-name">Meenakshi T.</cite>
+              <span class="testi-branch">Porur Member</span>
+            </div>
+            <span class="testi-badge">Lost 12kg in 3 months</span>
+          </footer>
+        </blockquote>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHATSAPP OPT-IN (Meta compliance — required)
+  ============================================================ -->
+  <section id="whatsapp-cta" class="section">
+    <div class="container wa-grid">
+
+      <div class="wa-text">
+        <span class="wa-label">Get In Touch</span>
+        <h2 class="wa-heading">Message Us on<br /><span>WhatsApp</span></h2>
+        <p class="wa-body">
+          Send us a message to enquire about memberships, trial sessions, or any questions.
+          We typically reply within minutes.
+        </p>
+        <a href="https://wa.me/919999999999?text=Hi%2C%20I%27m%20interested%20in%20joining%20KK%20Fitness%20Studio"
+           target="_blank" rel="noopener"
+           class="btn btn-dark wa-main-btn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Message KK Fitness on WhatsApp
+        </a>
+        <p class="wa-consent-note">
+          By clicking the button above, you agree to receive messages from KK Fitness Studio on WhatsApp.
+          You can opt out at any time by replying <strong>STOP</strong>.
+        </p>
+      </div>
+
+      <div class="wa-form-wrap">
+        <h3 class="form-title">Send an Enquiry</h3>
+        <form
+          id="enquiry-form"
+          action="https://formspree.io/f/XXXXXXXX"
+          method="POST"
+          novalidate
+        >
+          <div class="form-group">
+            <label for="f-name">Full Name</label>
+            <input type="text" id="f-name" name="name" placeholder="Your name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="f-phone">Phone Number</label>
+            <div class="phone-wrap">
+              <span class="phone-prefix">+91</span>
+              <input type="tel" id="f-phone" name="phone" placeholder="99999 99999" required autocomplete="tel" pattern="[0-9]{10}" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="f-location">Preferred Location</label>
+            <select id="f-location" name="location" required>
+              <option value="" disabled selected>Select a studio</option>
+              <option value="Anna Nagar">Anna Nagar</option>
+              <option value="Velachery">Velachery</option>
+              <option value="Porur">Porur</option>
+              <option value="Ambattur">Ambattur</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" rows="3" placeholder="Tell us what you're looking for..."></textarea>
+          </div>
+          <div class="form-group form-check-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="f-consent" name="consent" required />
+              <span class="checkmark" aria-hidden="true"></span>
+              I agree to be contacted by KK Fitness Studio on WhatsApp
+            </label>
+            <p id="consent-error" class="consent-error" role="alert" aria-live="polite"></p>
+          </div>
+          <button type="submit" class="btn btn-dark form-submit">Send Enquiry</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PRIVACY POLICY + TERMS (Meta required)
+  ============================================================ -->
+  <section id="legal" class="section">
+    <div class="container legal-wrap">
+
+      <div class="legal-header">
+        <span class="section-label">Legal</span>
+        <div class="gold-bar"></div>
+        <h2 class="section-heading">Privacy &amp; <span>Terms</span></h2>
+      </div>
+
+      <!-- Privacy Policy -->
+      <details id="privacy" class="accordion">
+        <summary class="accordion-trigger">
+          <span>Privacy Policy</span>
+          <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="accordion-body">
+          <p class="legal-updated">Last Updated: March 2026</p>
+          <p>KK Fitness Studio ("we", "us", "our") is committed to protecting your privacy. This policy explains how we collect and use your personal information.</p>
+
+          <h4>1. Information We Collect</h4>
+          <p>We collect your name, phone number, and email address when you fill out our contact form or message us on WhatsApp.</p>
+
+          <h4>2. How We Use Your Information</h4>
+          <p>Your information is used to respond to enquiries, provide membership information, and send updates about our services via WhatsApp or SMS.</p>
+
+          <h4>3. WhatsApp Communications</h4>
+          <p>By contacting us on WhatsApp or submitting your number via our form (with consent checked), you agree to receive messages from KK Fitness Studio. You may opt out at any time by replying <strong>STOP</strong>.</p>
+
+          <h4>4. Data Sharing</h4>
+          <p>We do not sell, rent, or share your personal information with third parties.</p>
+
+          <h4>5. Data Retention</h4>
+          <p>We retain your data only as long as necessary to provide our services.</p>
+
+          <h4>6. Contact Us</h4>
+          <p>For privacy-related concerns, email us at: <a href="mailto:info@kkfitness.in">info@kkfitness.in</a></p>
+        </div>
+      </details>
+
+      <!-- Terms & Conditions -->
+      <details id="terms" class="accordion">
+        <summary class="accordion-trigger">
+          <span>Terms &amp; Conditions</span>
+          <svg class="accordion-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+        <div class="accordion-body">
+          <p class="legal-updated">Last Updated: March 2026</p>
+          <ol class="terms-list">
+            <li>Membership terms are subject to the specific plan chosen at time of enrollment.</li>
+            <li>All fitness programs are conducted under certified trainer supervision.</li>
+            <li>KK Fitness Studio reserves the right to modify class schedules and programs.</li>
+            <li>Memberships are non-transferable unless otherwise stated.</li>
+            <li>KK Fitness Studio is not responsible for personal injury due to improper use of equipment.</li>
+            <li>Use of this website constitutes acceptance of these terms.</li>
+          </ol>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer id="footer">
+    <div class="container footer-inner">
+
+      <div class="footer-brand">
+        <a href="#" aria-label="KK Fitness Studio">
+          <img src="./kk.png" alt="KK Fitness Studio" height="48" loading="lazy" />
+        </a>
+        <p class="footer-tagline">Feel The Sweat &mdash; KK Fitness Studio</p>
+        <p class="footer-desc">
+          Chennai's most energetic fitness community. Certified trainers, premium equipment,
+          and real results across 4 locations.
+        </p>
+        <div class="footer-socials">
+          <a href="#" aria-label="Instagram" class="social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" class="social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" aria-label="YouTube" class="social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+          <a href="https://wa.me/919999999999" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">Quick Links</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#locations">Locations</a></li>
+          <li><a href="#testimonials">Members</a></li>
+          <li><a href="#whatsapp-cta">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-col-title">Legal</h4>
+        <ul>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms &amp; Conditions</a></li>
+        </ul>
+        <h4 class="footer-col-title" style="margin-top:1.5rem">Contact</h4>
+        <ul>
+          <li><a href="tel:+919999999999">+91 99999 99999</a></li>
+          <li><a href="mailto:info@kkfitness.in">info@kkfitness.in</a></li>
+        </ul>
+      </div>
+
     </div>
 
-  </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2024 KK Fitness Studio. All rights reserved. Registered in Tamil Nadu, India.</p>
+        <p class="footer-gst">GST: [GSTIN] &mdash; Replace before going live</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    // Nav: toggle .scrolled on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+
+    // Hamburger: toggle nav--open
+    const navToggle = document.getElementById('nav-toggle');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navbar.classList.toggle('nav--open');
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close drawer when a drawer link is clicked
+    document.querySelectorAll('.drawer-link, .drawer-wa').forEach(link => {
+      link.addEventListener('click', () => {
+        navbar.classList.remove('nav--open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Enquiry form: validate consent checkbox before submit
+    const form = document.getElementById('enquiry-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        const consent = document.getElementById('f-consent');
+        const error = document.getElementById('consent-error');
+        if (!consent.checked) {
+          e.preventDefault();
+          error.textContent = 'Please agree to be contacted on WhatsApp before submitting.';
+          consent.focus();
+        } else {
+          error.textContent = '';
+        }
+      });
+    }
+  </script>
 
 </body>
 </html>
