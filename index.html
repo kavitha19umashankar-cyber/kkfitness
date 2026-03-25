@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KK Fitness — Coming Soon</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Barlow:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background-color: #09090B;
+      color: #FAFAFA;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+    }
+
+    /* Green radial glow */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(57, 255, 20, 0.08) 0%, transparent 70%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      max-width: 640px;
+    }
+
+    /* Logo */
+    .logo {
+      width: 80px;
+      height: 80px;
+      background: #18181B;
+      border: 2px solid #39FF14;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 30px rgba(57, 255, 20, 0.3);
+    }
+
+    .logo span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #39FF14;
+      letter-spacing: -1px;
+    }
+
+    /* Tag */
+    .tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: #39FF14;
+      text-transform: uppercase;
+      border: 1px solid rgba(57, 255, 20, 0.3);
+      background: rgba(57, 255, 20, 0.05);
+      padding: 0.35rem 1rem;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Heading */
+    h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      line-height: 1;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    h1 span {
+      color: #39FF14;
+      text-shadow: 0 0 40px rgba(57, 255, 20, 0.4);
+    }
+
+    /* Subtext */
+    p {
+      font-size: 1rem;
+      color: #A1A1AA;
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Divider */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #39FF14;
+      margin: 0 auto 2.5rem;
+      box-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+    }
+
+    /* Contact */
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .contact a {
+      color: #A1A1AA;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact a:hover { color: #39FF14; }
+
+    .contact-dot {
+      width: 6px;
+      height: 6px;
+      background: #39FF14;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+    }
+
+    /* Border frame */
+    .frame {
+      position: fixed;
+      inset: 16px;
+      border: 1px solid rgba(57, 255, 20, 0.12);
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Corner accents */
+    .corner {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-color: #39FF14;
+      border-style: solid;
+      z-index: 2;
+    }
+    .corner.tl { top: 16px; left: 16px; border-width: 2px 0 0 2px; }
+    .corner.tr { top: 16px; right: 16px; border-width: 2px 2px 0 0; }
+    .corner.bl { bottom: 16px; left: 16px; border-width: 0 0 2px 2px; }
+    .corner.br { bottom: 16px; right: 16px; border-width: 0 2px 2px 0; }
+
+    @media (max-width: 480px) {
+      .frame, .corner { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="frame"></div>
+  <div class="corner tl"></div>
+  <div class="corner tr"></div>
+  <div class="corner bl"></div>
+  <div class="corner br"></div>
+
+  <div class="container">
+
+    <div class="logo">
+      <span>KK</span>
+    </div>
+
+    <div class="tag">Coming Soon</div>
+
+    <h1>We're Building<br><span>Something Great</span></h1>
+
+    <div class="divider"></div>
+
+    <p>
+      KK Fitness is launching soon. Our new website is under construction.
+      Stay tuned — something powerful is on the way.
+    </p>
+
+    <div class="contact">
+      <a href="tel:+919999999999">
+        <span class="contact-dot"></span>
+        +91 99999 99999
+      </a>
+      <a href="mailto:info@kkfitness.in">
+        <span class="contact-dot"></span>
+        info@kkfitness.in
+      </a>
+      <a href="https://kkfitness.in">
+        <span class="contact-dot"></span>
+        kkfitness.in
+      </a>
+    </div>
+
+  </div>
+
+</body>
+</html>
