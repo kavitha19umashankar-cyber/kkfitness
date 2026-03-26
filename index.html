@@ -2231,15 +2231,46 @@
     if (form) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const consent = document.getElementById('f-consent');
-        const error = document.getElementById('consent-error');
 
+        const name     = document.getElementById('f-name');
+        const phone    = document.getElementById('f-phone');
+        const location = document.getElementById('f-location');
+        const message  = document.getElementById('f-message');
+        const consent  = document.getElementById('f-consent');
+        const error    = document.getElementById('consent-error');
+
+        // Clear previous errors
+        [name, phone, location, message].forEach(el => el.style.borderColor = '');
+        error.textContent = '';
+
+        let valid = true;
+
+        if (!name.value.trim()) {
+          name.style.borderColor = '#f87171';
+          name.focus();
+          valid = false;
+        }
+        if (!phone.value.trim() || phone.value.replace(/\D/g,'').length < 10) {
+          phone.style.borderColor = '#f87171';
+          if (valid) phone.focus();
+          valid = false;
+        }
+        if (!location.value) {
+          location.style.borderColor = '#f87171';
+          if (valid) location.focus();
+          valid = false;
+        }
+        if (!message.value.trim()) {
+          message.style.borderColor = '#f87171';
+          if (valid) message.focus();
+          valid = false;
+        }
         if (!consent.checked) {
           error.textContent = 'Please agree to be contacted on WhatsApp before submitting.';
-          consent.focus();
-          return;
+          valid = false;
         }
-        error.textContent = '';
+
+        if (!valid) return;
 
         const submitBtn = form.querySelector('.form-submit');
         submitBtn.textContent = 'Sending...';
