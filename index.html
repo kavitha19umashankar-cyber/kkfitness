@@ -1152,7 +1152,7 @@
       color: var(--muted);
     }
 
-    .form-group input,
+    .form-group input:not([type="checkbox"]),
     .form-group select,
     .form-group textarea {
       background: var(--card);
@@ -2028,11 +2028,13 @@
         <h3 class="form-title">Send an Enquiry</h3>
         <form
           id="enquiry-form"
-          action="https://formspree.io/info@kkfitness.in"
+          action="https://api.web3forms.com/submit"
           method="POST"
           novalidate
         >
-          <input type="hidden" name="_subject" value="KK Fitness Studio — New Enquiry" />
+          <input type="hidden" name="access_key" value="ec366490-b8d6-42d8-b304-7d296eb278eb" />
+          <input type="hidden" name="subject" value="KK Fitness Studio — New Enquiry" />
+          <input type="hidden" name="from_name" value="KK Fitness Studio Website" />
           <div class="form-group">
             <label for="f-name">Full Name</label>
             <input type="text" id="f-name" name="name" placeholder="Your name" required autocomplete="name" />
