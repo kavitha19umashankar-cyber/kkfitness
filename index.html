@@ -2226,18 +2226,50 @@
       });
     });
 
-    // Enquiry form: validate consent checkbox before submit
+    // Enquiry form: AJAX submit via Web3Forms, show inline success
     const form = document.getElementById('enquiry-form');
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         const consent = document.getElementById('f-consent');
         const error = document.getElementById('consent-error');
+
         if (!consent.checked) {
-          e.preventDefault();
           error.textContent = 'Please agree to be contacted on WhatsApp before submitting.';
           consent.focus();
-        } else {
-          error.textContent = '';
+          return;
+        }
+        error.textContent = '';
+
+        const submitBtn = form.querySelector('.form-submit');
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: new FormData(form)
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            form.innerHTML = `
+              <div style="text-align:center;padding:2rem 1rem;">
+                <div style="width:56px;height:56px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0D0D0D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <h4 style="font-family:var(--font-head);font-size:1.4rem;font-weight:900;font-style:italic;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;">Enquiry Sent!</h4>
+                <p style="color:var(--muted);font-size:0.9rem;line-height:1.6;">Thank you! We've received your message and will get back to you on WhatsApp shortly.</p>
+              </div>`;
+          } else {
+            submitBtn.textContent = 'Send Enquiry';
+            submitBtn.disabled = false;
+            error.textContent = 'Something went wrong. Please try again.';
+          }
+        } catch {
+          submitBtn.textContent = 'Send Enquiry';
+          submitBtn.disabled = false;
+          error.textContent = 'Network error. Please try again.';
         }
       });
     }
